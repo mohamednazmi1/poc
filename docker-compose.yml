@@ -1,0 +1,7 @@
+services:
+  poc:
+    container_name: poc
+    build: .
+    restart: always
+    ports:
+      - 2000:2000
