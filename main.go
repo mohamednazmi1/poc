@@ -14,7 +14,6 @@ func main() {
 		fmt.Println("Listen Error:", err)
 	}
 	defer l.Close()
-
 	for {
 		conn, err := l.Accept()
 		if err != nil {
@@ -31,7 +30,7 @@ func main() {
 					return
 				}
 				data := fmt.Sprintf("%x", tmp[:n])
-				fmt.Printf("%s, Data: %s", data, time.Now().UTC().Format("2006-01-02 15:04:05 MST"))
+				fmt.Printf("%s, Data: %s \n", time.Now().UTC().Format("2006-01-02 15:04:05 MST"), data)
 			}
 		}(conn)
 	}
