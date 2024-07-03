@@ -4,7 +4,6 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net"
 )
 
@@ -49,10 +48,10 @@ func main() {
 
 				dst := make([]byte, hex.DecodedLen(len(str)))
 				no, error1 := hex.Decode(dst, tmp)
-				if error1 != nil {
-					log.Fatal(err)
-				}
 				fmt.Printf("%s\n", dst[:no])
+				if error1 != nil {
+					fmt.Println("Encoding Error:", err)
+				}
 			}
 			// Shut down the connection.
 			// c.Close()
