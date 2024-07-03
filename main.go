@@ -67,7 +67,11 @@ func main() {
 func decodeAndPrintData(data []byte) {
 	str := string(data)
 
+	b := fmt.Sprintf("%x", str)
+	fmt.Printf("Decoded bytes %v", []byte(b))
+
 	fmt.Println("Incoming data:", str)
+	fmt.Printf("%x", str)
 
 	var jsonData map[string]interface{}
 	if err := json.Unmarshal(data, &jsonData); err == nil {
