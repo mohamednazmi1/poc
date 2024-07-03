@@ -36,7 +36,8 @@ func main() {
 					return
 				}
 				str := string(tmp[:])
-				// fmt.Println("Incoming data:", str)
+				fmt.Println("Incoming data:", str)
+
 				var jsonData map[string]interface{}
 				if err := json.Unmarshal(tmp[:n], &jsonData); err == nil {
 					// Successfully decoded JSON data
@@ -50,7 +51,7 @@ func main() {
 				no, error1 := hex.Decode(dst, tmp)
 				fmt.Printf("%s\n", dst[:no])
 				if error1 != nil {
-					fmt.Println("Encoding Error:", err)
+					fmt.Println("Hex Decoding Error:", error1.Error())
 				}
 			}
 			// Shut down the connection.
