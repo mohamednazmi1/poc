@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net"
 )
@@ -34,7 +35,15 @@ func main() {
 					return
 				}
 				str := string(tmp[:])
-				fmt.Println("Incoming data:", str)
+				// fmt.Println("Incoming data:", str)
+				var jsonData map[string]interface{}
+				if err := json.Unmarshal(tmp[:n], &jsonData); err == nil {
+					// Successfully decoded JSON data
+					fmt.Println("Decoded JSON data:", jsonData)
+				} else {
+					// Print the raw data if it's not JSON
+					fmt.Println("Raw data:", str)
+				}
 			}
 			// Shut down the connection.
 			// c.Close()
