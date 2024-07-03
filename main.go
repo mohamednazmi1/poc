@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
@@ -30,7 +29,7 @@ func main() {
 			for {
 				tmp := make([]byte, 4096)
 				n, err := c.Read(tmp)
-				decodeAndPrintData(tmp)
+				decodeAndPrintData(tmp[:n])
 
 				fmt.Println("Length:", n)
 				if err != nil {
@@ -66,30 +65,6 @@ func main() {
 func decodeAndPrintData(data []byte) {
 	str := string(data)
 
-	b := fmt.Sprintf("%x", str)
-	fmt.Printf("Decoded bytes %v", []byte(b))
-
-	fmt.Println("Incoming data:", str)
+	fmt.Printf("%x", data)
 	fmt.Printf("%x", str)
-
-	var jsonData map[string]interface{}
-	if err := json.Unmarshal(data, &jsonData); err == nil {
-		fmt.Println("Decoded JSON data:", jsonData)
-	} else {
-		fmt.Println("Failed to decode JSON:", err)
-	}
-
-	if decodedHex, err := hex.DecodeString(str); err == nil {
-		fmt.Println("Decoded hex data:", string(decodedHex))
-	} else {
-		fmt.Println("Failed to decode hex:", err)
-	}
-
-	if decodedBase64, err := base64.StdEncoding.DecodeString(str); err == nil {
-		fmt.Println("Decoded base64 data:", string(decodedBase64))
-	} else {
-		fmt.Println("Failed to decode base64:", err)
-	}
-
-	fmt.Println("Raw data:", str)
 }
