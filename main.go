@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net"
-	"strings"
 )
 
 func main() {
@@ -80,13 +79,13 @@ func decodeAndPrintData(data []byte) {
 		fmt.Println("Failed to decode JSON:", err)
 	}
 
-	if decodedHex, err := hex.DecodeString(strings.TrimSpace(str)); err == nil {
+	if decodedHex, err := hex.DecodeString(str); err == nil {
 		fmt.Println("Decoded hex data:", string(decodedHex))
 	} else {
 		fmt.Println("Failed to decode hex:", err)
 	}
 
-	if decodedBase64, err := base64.StdEncoding.DecodeString(strings.TrimSpace(str)); err == nil {
+	if decodedBase64, err := base64.StdEncoding.DecodeString(str); err == nil {
 		fmt.Println("Decoded base64 data:", string(decodedBase64))
 	} else {
 		fmt.Println("Failed to decode base64:", err)
