@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net"
 )
 
@@ -44,6 +46,13 @@ func main() {
 					// Print the raw data if it's not JSON
 					fmt.Println("Raw data:", str)
 				}
+
+				dst := make([]byte, hex.DecodedLen(len(str)))
+				no, error1 := hex.Decode(dst, tmp)
+				if error1 != nil {
+					log.Fatal(err)
+				}
+				fmt.Printf("%s\n", dst[:no])
 			}
 			// Shut down the connection.
 			// c.Close()
